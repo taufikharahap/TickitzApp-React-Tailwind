@@ -1,0 +1,342 @@
+body {
+    font-family: 'Mulish';
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 100vw;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../assets/images/background-sign-up.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.icon-tickitz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 30px;
+}
+
+.icon-tickitz img {
+    width: 276px;
+    height: auto;
+}
+
+section {
+    max-width: 546px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 40px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.con-flow-sign-up {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+    margin-bottom: 30px;
+}
+
+.con-flow-sign-up .con-number-flow {
+    height: 75px;
+    width: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5px;
+}
+
+.con-line-flow {
+    color: #A0A3BD;
+}
+
+.con-number-flow .number-flow {
+    background-color: #A0A3BD;
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    font-size: 16px;
+    text-align: center;
+    line-height: 47px;
+    color: #FFFFFF;
+}
+
+.con-number-flow .title-number-flow {
+    font-size: 14px;
+    color: #A0A3BD;
+    width: 100%;
+    text-wrap: nowrap;
+}
+
+.con-flow-sign-up :nth-child(1) .number-flow {
+    background-color: #1D4ED8;
+}
+
+.con-flow-sign-up :nth-child(1) .title-number-flow {
+    color: #4E4B66;
+    font-weight: 600;
+}
+
+.form-sign-up {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-sign-up .con-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.con-input label {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 7px;
+    color: #4E4B66;
+}
+
+.con-input input {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    padding-right: 15%;
+    font-size: 16px;
+    background-color: #FCFDFE;
+    border-radius: 4px;
+    border: 1px solid #DEDEDE;
+}
+
+.con-input input::placeholder {
+    color: #A0A3BD;
+    font-size: 14px;
+    font-weight: 400;
+    width: 70%;
+}
+
+.con-input input:focus, .con-rules input:focus ~ .checkmark , .btn-submit:focus {
+    outline: 2px solid #8a8fbd;
+    border: none;
+}
+
+.form-sign-up :nth-child(2) {
+    position: relative;
+}
+
+.form-sign-up :nth-child(2) img {
+    position: absolute;
+    right: 20px;
+    top: 53%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.con-rules {
+    position: relative;
+    line-height: 34px;
+    padding-left: 30px;
+    color: #696F79;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 17px;
+}
+
+.con-rules input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    cursor: pointer;
+}
+
+.con-rules .checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    border: 1px solid #DEDEDE;
+    background-color: #FCFDFE;
+}
+
+.con-rules .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    width: 6px;
+    height: 12px;
+    left: 6.4px;
+    top: 1.4px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.con-rules input:checked ~ .checkmark::after {
+    display: block;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+}
+
+.con-rules input:hover ~ .checkmark {
+    background-color: #1d4fd85d;
+    border: none;
+}
+
+.con-rules input:checked ~ .checkmark {
+    background-color:#1D4ED8;
+    border: none;
+}
+
+.btn-submit {
+    line-height: 58px;
+    background-color: #1D4ED8 !important;
+    font-size: 14px;
+    font-weight: 400;
+    color: #F7F7FC;
+    text-align: center;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 17px;
+}
+
+.btn-submit:hover {
+    background-color: #0b2774f5 !important;
+}
+
+.link-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    line-height: 16px;
+    margin-bottom: 20px;
+}
+
+.link-login p, .link-login .a {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500;
+    font-size: 14px;
+    color: #696F79;
+}
+
+.link-login a {
+    color: #1D4ED8;
+    border-bottom: 1px solid #1D4ED8;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.con-line-or {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.con-line-or hr {
+    width: 40%;
+    border: 0.5px solid #DEDEDE;
+}
+
+.con-line-or p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #AAAAAA;
+}
+
+.con-logo-sosmed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.con-logo-sosmed .logo-sosmed {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
+    cursor: pointer;
+}
+
+.con-logo-sosmed .logo-sosmed:hover {
+    box-shadow: rgba(99, 99, 99, 0.726) 0px 4px 8px 0px;
+}
+
+.con-logo-sosmed .logo-sosmed p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #A0A3BD;
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        width: 100vw;
+        padding: 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .icon-tickitz img {
+        width: 180px;
+    }
+
+    section {
+        overflow: scroll;
+        padding: 50px 30px;
+    }
+
+    .con-flow-sign-up, .con-rules, .logo-sosmed p{
+        display: none;
+    }
+
+    .con-logo-sosmed {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-sosmed {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .con-input input, .btn-submit {
+        height: 50px;
+        line-height: 50px;
+    }
+}

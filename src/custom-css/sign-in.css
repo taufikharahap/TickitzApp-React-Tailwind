@@ -1,0 +1,253 @@
+body {
+  font-family: 'Mulish';
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../assets/images/background-sign-up.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.icon-tickitz {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 20px;
+}
+
+.icon-tickitz img {
+  width: 276px;
+  height: auto;
+}
+
+section {
+  max-width: 546px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 50px;
+  background-color: #FFFFFF !important;
+  border-radius: 8px;
+}
+
+section .welcome-text {
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 34px;
+  text-align: left;
+  color: #121212;
+  margin-bottom: 20px;
+  text-wrap: nowrap;
+}
+
+section .welcome-text span {
+  margin-left: -12px;
+  font-size: 32px;
+}
+
+section .sub-text-welcome {
+  font-family: 'Inter', sans-serif;
+  color: #A0A3BD;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.form-sign-in {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-sign-in .con-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.con-input label {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 7px;
+  color: #4E4B66;
+}
+
+.con-input input {
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  padding-right: 15%;
+  font-size: 16px;
+  background-color: #FCFDFE;
+  border-radius: 4px;
+  border: 1px solid #DEDEDE;
+}
+
+.con-input input::placeholder {
+  color: #A0A3BD;
+  font-size: 14px;
+  font-weight: 400;
+  width: 70%;
+}
+
+.con-input input:focus, .con-rules input:focus ~ .checkmark , .btn-submit:focus {
+  outline: 2px solid #8a8fbd;
+  border: none;
+}
+
+.form-sign-in :nth-child(2) {
+  position: relative;
+}
+
+.form-sign-in :nth-child(2) img {
+  position: absolute;
+  right: 20px;
+  top: 53%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.icon-hidden-password {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.forget-password{
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1D4ED8;
+  margin-bottom: 20px;
+}
+.btn-submit {
+  line-height: 58px;
+  background-color: #1D4ED8;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .75px;
+  color: #F7F7FC;
+  text-align: center;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 22px;
+}
+
+.btn-submit:hover {
+  background-color: #1d4fd8d2;
+}
+
+.con-line-or {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.con-line-or hr {
+  width: 40%;
+  border: 0.5px solid #DEDEDE;
+}
+
+.con-line-or p {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #AAAAAA;
+}
+
+.con-logo-sosmed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.con-logo-sosmed .logo-sosmed {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 4px 8px 0px;
+  cursor: pointer;
+}
+
+.con-logo-sosmed .logo-sosmed:hover {
+  box-shadow: rgba(99, 99, 99, 0.726) 0px 4px 8px 0px;
+}
+
+.con-logo-sosmed .logo-sosmed .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.con-logo-sosmed .logo-sosmed p {
+  font-size: 18px;
+  font-weight: 600;
+  color: #A0A3BD;
+}
+
+@media screen and (max-width: 600px) {
+  main {
+      width: 100vw;
+      min-height: 100vh;
+      padding: 20px 30px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+
+  .icon-tickitz {
+      margin-bottom: 30px;
+  }
+
+  .icon-tickitz img {
+      max-width: 100%;
+      height: auto;
+      width: 180px;
+  }
+  section {
+      height: 100%;
+      overflow: scroll;
+      padding: 50px 25px;
+  }
+  .con-logo-sosmed {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+  .logo-sosmed {
+      width: fit-content;
+  }
+  .logo-sosmed p {
+      display: none;
+  }
+}
+
+
+
+
+
+
