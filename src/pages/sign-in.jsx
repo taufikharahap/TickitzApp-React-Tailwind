@@ -28,11 +28,11 @@ function SignIn () {
     }
 
     return (
-            <main>
+            <main className='con-page-sigin'>
                 <div className="icon-tickitz">
                     <img src={iconTickitz} alt="icon tickitz"/>
                 </div>
-                <section>
+                <section className='con-form'>
                     <h2 className="welcome-text">Welcome Back <span>&#128075;</span></h2>
                     <p className="sub-text-welcome">Sign in with your data that you entered during your registration</p>
                     <form className="form-sign-in" action="">

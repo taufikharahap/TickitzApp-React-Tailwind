@@ -28,11 +28,11 @@ export default function SignUp () {
     }
 
     return (
-        <main>
+        <main className='con-page-signup'>
             <div className="icon-tickitz">
                 <img src={iconTickitz} alt="icon-tickitz"/>
             </div>
-            <section>
+            <section className="con-form">
                 <div className="con-flow-sign-up">
                     <div className="con-number-flow">
                         <p className="number-flow number-1">1</p>

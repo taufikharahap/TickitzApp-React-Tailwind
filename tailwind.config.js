@@ -8,7 +8,6 @@ export default {
     extend: {
       backgroundImage: {
         'sign': "url('./src/assets/images/background-sign-up.png')",
-    
       }
     },
     fontFamily: {

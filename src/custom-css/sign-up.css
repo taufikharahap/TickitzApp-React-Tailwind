@@ -2,7 +2,7 @@ body {
     font-family: 'Mulish';
 }
 
-main {
+.con-page-signup {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,7 +32,7 @@ main {
     height: auto;
 }
 
-section {
+.con-form {
     max-width: 546px;
     display: flex;
     flex-direction: column;
@@ -301,7 +301,7 @@ section {
 }
 
 @media screen and (max-width: 600px) {
-    main {
+    .con-page-sigup {
         width: 100vw;
         padding: 20px;
         overflow-y: scroll;
@@ -312,7 +312,7 @@ section {
         width: 180px;
     }
 
-    section {
+    .con-form {
         overflow: scroll;
         padding: 50px 30px;
     }

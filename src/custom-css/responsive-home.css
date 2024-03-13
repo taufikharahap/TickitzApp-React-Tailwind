@@ -1,0 +1,339 @@
+@media screen and (max-width: 600px) {
+    .con-btn-sign{
+        display: none;
+    }
+
+    .con-page-home {
+        overflow-x: hidden;
+    }
+
+    .app-bar {
+        height: 91px;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        padding: 0px 40px 0px 40px;  
+        background-color: #FFFFFF;
+        z-index: 99;
+    }
+    
+    .app-bar #btn-menu {
+        display: block;
+        z-index: 99;
+    }
+
+    .app-bar .icon-tickitz-home img {
+        width: 93px;
+        height: 37px;
+    }
+
+    .app-bar nav {
+        background-color: #00000080;
+        width: 0;
+        position: absolute;
+        top: 91px;
+        left: 0;
+        transition: all ease .3s;              
+    }
+    
+    .app-bar nav .nav-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        column-gap: 0;
+        gap: 0;
+        min-height: 100vh;
+        width: 65%;
+        background-color: white;
+        overflow-x: hidden;
+        transition: all ease .2s;
+    }
+
+    .app-bar nav .nav-list li {
+        line-height: 40px;
+    }
+    .app-bar nav .nav-list li a {
+        padding: 0;
+        display: block;
+        font-size: 18px;
+        padding-left: 40px;
+    }
+
+    #con-btn-sign-side {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        row-gap: 15px;
+    }
+
+    #con-btn-sign-side li{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #FFFFFF;
+    }
+
+    #con-btn-sign-side li a {
+        color: #1D4ED8;
+        border: 1px solid #1D4ED8;
+        width: 110px;
+        display: block;
+        text-align: center;
+        padding: 0;
+        border-radius: 5px;
+    }
+
+    #con-btn-sign-side #btn-sign-up a {
+        color: #ffffff;
+        background-color: #1D4ED8;
+        border-color: #ffffff;
+    }
+
+
+    .con-page-home article {
+        padding: 25px;
+    }
+
+    .con-hero {
+        flex-direction: column;
+        padding-top: 70px;
+    }
+
+
+    .hero-words {
+        width: 100%;
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 25px;
+    }
+
+    .con-page-home article h2 {
+       text-align: center;
+    }
+
+    .hero-words p {
+        text-align: center;
+        line-height: 35px;
+    }
+
+    .hero-words .motivation {
+        font-size: 32px;
+        line-height: 44px;
+    }
+
+    .hero-images{
+        column-gap: 15px;
+        justify-content: center;
+    }
+
+    .hero-images .sub-images {
+        row-gap: 15px;
+    }
+    .hero-images .sub-images .image-litle {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .hero-images .sub-images .image-large {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .con-why {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 25px;
+    }
+
+    .con-page-home article .sub-title {
+        width: 100%;
+        text-align: center;
+    }
+
+    .con-why .con-services {
+        flex-direction: column;
+        column-gap: 0;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .con-why .con-services .services {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .sub-title-services {
+        text-align: center;
+        color: #52525B;
+        letter-spacing: 0.75px;
+        line-height: 32px;
+    }
+
+    .con-card-movies {
+        width: 100%;
+        justify-content: start;
+        overflow-x: scroll;
+        column-gap: 15px;
+        padding-bottom: 0;
+    }
+
+    .con-card-movies .card-movies {
+        width: 70%;
+        /* padding: 15px; */
+    }
+
+    .con-card-movies .card-movies img {
+        max-width: 100%;
+        height: 70%;
+    }
+
+    .card-movies .dark-image {
+        max-width: 100%;
+        max-height: 65%;
+    }
+
+    .card-movies .movie-name {
+        font-size: 18px;   
+    }
+
+    .card-movies .con-movie-genre p {
+        font-size: 14px;
+        line-height: 10px;
+    }
+
+    .card-movies .con-details-buy {
+        height: 70%;
+    }
+    
+    .con-movies-upcoming .card-movies .con-details-buy{
+        height: 70%;
+    }
+
+    .link-view-all {
+        display: none;
+    }
+
+    .btn-movies-upcoming {
+        display: none;
+    }
+
+    .con-movies-upcoming {
+        margin-top: -30px;
+    }
+
+
+    .release-date {
+        font-size: 14px;
+    }
+
+    .con-subscribe{
+        width: 87%;
+        padding-bottom: 130px;
+        margin-bottom: 0px;
+    }
+
+    .con-subscribe p {
+        font-size: 32px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .con-subscribe form {
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 14px;
+    }
+
+    .con-subscribe form input {
+        background-color: #2563EB;
+    }
+
+    .con-subscribe::after {
+        bottom: -25%;
+        right: -45%;
+    }
+
+    footer .con-list-footer {
+        flex-direction: column;
+        padding: 120px 25px 0 25px;
+        
+    }
+
+    .con-list-footer .sub-list-footer {
+        width: 100%;
+        justify-content: start;
+    }
+
+    .con-list-footer .footer-explore {
+        padding-left: 0;
+    }
+
+    .con-list-footer .footer-tickitz p {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .con-list-footer .footer-tickitz img {
+        width: 153px;
+        height: 60px;
+    }
+
+    .con-list-footer .sub-list-footer .title-list-footer {
+        font-weight: 600;
+        margin-bottom: 10px;
+        margin-top: 25px;
+    }
+
+    .con-list-footer  .footer-explore .list-explore{
+        display: flex;
+        flex-direction: row;
+        column-gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .list-sponsor {
+        display: flex;
+        flex-direction: row;
+        column-gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .list-sponsor img, .icon-cinema, .icon-hiflix {
+        width: 81px;
+        height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .con-list-footer .footer-sponsor .title-list-footer {
+        margin-bottom: 20px;
+    }
+
+    .con-medsos a {
+        display: none;
+    }
+
+    .con-icon-medsos {
+        display: flex;
+        flex-direction: row;
+        column-gap: 20px;
+    }
+
+    .copy-right {
+        font-size: 13px;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .app-bar .open{
+        width: 100%;
+    }
+}

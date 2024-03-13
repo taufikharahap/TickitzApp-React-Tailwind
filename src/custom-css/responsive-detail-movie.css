@@ -1,0 +1,218 @@
+@media screen and (max-width: 600px) {
+        .con-movie-detail {
+        overflow-x: hidden;
+        padding: 0 25px; 
+    }
+
+    .con-hero-detail-movie {
+        height: 475px;
+        background-repeat: no-repeat;
+        background-position: right;
+        margin-bottom: 240px;
+    }
+
+    .con-hero-detail-movie img {
+        display: block;
+    }
+
+    .con-detail-movie {
+        position: relative;
+    }
+
+    .con-header-movie{
+        display: flex;
+        flex-direction: column;
+        position:relative;
+    }
+
+    .con-poster-movie img {
+        display: none;
+        width: 100%;
+        height: 502px;
+        position: relative;
+    }
+
+    .con-right-header {
+        padding: 0;
+        margin-top: 70px;
+    }
+
+    .con-right-header .movie-name {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .con-genre {
+        justify-content: center;
+    }
+
+    .con-genre p{
+        font-size: 14px;
+    }
+    
+    .sub-detail .title {
+        font-size: 13px;
+    }
+
+    .con-sub-detail {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .con-sinopsis {
+        margin-top: 20px;
+    }
+
+    .con-sinopsis p {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .con-booking .title-booking {
+        display: none;
+    }
+
+    .form-date {
+        grid-template-columns: 1fr;
+    }
+
+    .con-input input, .con-location {
+        width: 100%;
+        padding: 0 40px;
+    }
+    .title-input, #input-time {
+        display: none;
+    }
+    .title-filter-mobile{
+        display: block;
+        font-size: 18px;
+        font-weight: 700;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .btn-submit {
+        margin-top: 10px;
+    }
+
+    #result-mobile {
+        display: block;
+        text-align: center;
+    }
+
+    .con-btn-list-cinema {
+        flex-direction: column;
+        row-gap: 15px;
+    }
+
+    .con-btn-cinema .btn-cinema {
+        width: 100%;
+    }
+
+    .con-cinema-detail {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    #icon-hiflix-mobile{
+        display: block;
+    }
+    #icon-hiflix-desktop {
+        display: none;
+    }
+    .right-cinema-detail {
+        width: 15%;
+        height: 100px;
+        text-align: right;
+        /* background-color: yellowgreen; */
+    }
+
+    .ebuid2 {
+        display: none;
+    }
+
+    .btn-submit-cinema {
+        display: none;
+    }
+
+    .con-cinema-detail hr {
+        border: 1px solid #DEDEDE;
+    }
+    
+    .title-category-time {
+        font-size: 20px;
+        font-weight: 600;
+        color: #000000;
+        letter-spacing: 0.5px;
+    }
+    .con-time {
+        display: grid;
+        grid-template-columns: 120px 120px;
+        gap: 10px;
+    }
+
+    .con-time .active {
+        color: #FFFFFF;
+        background-color: #1D4ED8;
+    }
+
+    .con-time p{
+        font-size: 14px;
+        color: #4E4B66;
+        background-color: #A0A3BD33;
+        padding: 12px 25px 12px 25px;
+        border-radius: 20px;
+    }
+    .con-cover-cinema {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .con-cover-cinema .left-cinema-detail{
+        width: 80%;
+    }
+
+    .left-cinema-detail img {
+        margin-bottom: 10px;
+    }
+
+    .left-cinema-detail p {
+        color: #6E7191;
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.75px;
+        margin-bottom: 15px;
+    }
+    /* .icon-arrow {
+        width: 15%;
+    } */
+
+    .con-btn-cinema .btn-cinema {
+        flex-direction: column;
+        justify-content: left;
+        align-items: flex-start;
+        height: fit-content;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: left;
+    }
+
+    .con-btn-cinema .btn-cinema .icon-cover {
+        width: 112px;
+        height: 45px;
+        margin-bottom: 20px;
+
+    }
+
+
+
+}
