@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import useApi from '../utils/useApi';
 import Header from '../components/Header';
 import imageHero35 from '../assets/images/Rectangle 35.png'
 import imageHero37 from '../assets/images/Rectangle 37.png'
@@ -16,27 +16,22 @@ import Footer from '../components/Footer';
 
 
 function Home () {
+    const api = useApi();
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-            axios
-                .request({
-                    headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTAyNzE0NzcsImV4cCI6MTcxMDI4OTQ3N30.JMzVFCNYZyelSx6eQy4Qo-zE1XnIXG_Yg1VVz-s6D74`
-                    },
-                    method: "GET",
-                    url: `http://localhost:8001/movie?page=1&limit=4`
-                }).then(response => {
-                    setMovies(response.data.data)
-                
-                }).catch((err) => {
-                    console.log(err)
-                })
+            api({ method: 'GET', url: '/movie?page=1&limit=4' })
+            .then(({ data }) => {
+                setMovies(data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }, [])
 
     return (
         <>
-            <Header/>
+            <Header pageHomeOrMovies={true}/>
             <main className='con-page-home'>
                 <article className="con-hero">
                     <section className="hero-words">

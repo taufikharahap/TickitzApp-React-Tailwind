@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import useApi from '../utils/useApi';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import showFormattedDate from "../utils/format-date";
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import imageHero from '../assets/images/Rectangle-613.png'
 import iconEbv from '../assets/images/icons/ebv.id 2.png'
@@ -22,23 +21,17 @@ import '../custom-css/responsive-detail-movie.css'
 function MovieDetail () {
 
     const params = useParams()
+    const api = useApi();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
-            axios
-                .request({
-                    headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MTAyNzE0NzcsImV4cCI6MTcxMDI4OTQ3N30.JMzVFCNYZyelSx6eQy4Qo-zE1XnIXG_Yg1VVz-s6D74`
-                    },
-                    method: "GET",
-                    url: `http://localhost:8001/movie/${params.id}`
-                }).then(response => {
-                    setMovie(response.data.data[0])
-                    console.log(response.data.data[0])
-                
-                }).catch((err) => {
-                    console.log(err)
-                })
+        api({ method: 'GET', url: `/movie/${params.id}` })
+        .then((response) => {
+            setMovie(response.data.data[0])
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }, [params])
 
     return (

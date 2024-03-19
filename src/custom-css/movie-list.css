@@ -115,3 +115,7 @@
     transform: rotate(-45deg);
     z-index: -1;
 }
+
+.con-movie-list .con-subscribe {
+    width: 100%;
+}

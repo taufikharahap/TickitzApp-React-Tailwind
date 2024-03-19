@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import useApi from '../utils/useApi'
 import iconTickitz from '../assets/images/icons/icon-tickitz.png'
 import iconEye from '../assets/images/icons/icon-eye.svg'
 import iconEyeHidden from '../assets/images/icons/eye-password-hide-svgrepo-com.svg'
@@ -8,6 +10,56 @@ import iconFb from '../assets/images/icons/fb-icon.png'
 import '../custom-css/sign-up.css'
 
 export default function SignUp () {
+    const api = useApi()
+    const alertElm = document.querySelector("#alert-error");
+    
+    const [form, setForm] = useState({role: 'user'})
+    const [message, setMessage] = useState(null)
+    
+    const {isAuth} = useSelector((state) => state.users)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isAuth) {
+            navigate('/profile')
+        }
+    }, [isAuth])
+
+    const changeHanlder = (e) => {
+        const data = { ...form }
+        data[e.target.name] = e.target.value
+        setForm(data)
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        api({
+            method: 'POST',
+            url: '/users',
+            data: form
+        })
+            .then((_) => {
+                setTimeout(() => {
+                    navigate('/sign-in')
+                }, 1500);
+                setMessage('Pendaftaran Berhasil')
+                alertElm.classList.add('opacity-100')
+            })
+            .catch((err) => {
+                setMessage(err.response.data.error)
+                alertElm.classList.add('opacity-100')
+            })
+    }
+
+    //Menghilangkan alert secara otomatis
+    useEffect(() => {
+        if (message) {
+            setTimeout(() => {
+                alertElm.classList.remove('opacity-100');
+            }, 7000)
+        }
+    },[message])
 
     const showPassword = () => {
 
@@ -26,6 +78,14 @@ export default function SignUp () {
         iconHiddenPassword.classList.add("show");
         iconShowPassword.classList.remove("show");
     }
+
+    const closeAllert = (e) => {
+        alertElm.classList.remove('opacity-100')
+        if(e.key == 'Enter') {
+            alertElm.classList.remove('opacity-100')
+        }
+    }
+
 
     return (
         <main className='con-page-signup'>
@@ -53,14 +113,14 @@ export default function SignUp () {
                         <p className="title-number-flow">Done</p>
                     </div>
                 </div>
-                <form className="form-sign-up" action="">
+                <form className="form-sign-up" action="" onSubmit={(event) => {submitHandler(event)}}>
                     <div className="con-input">
-                        <label htmlFor="input-email">Email</label>
-                        <input type="email" name="email" id="input-email" placeholder="Enter your email" required/>
+                        <label htmlFor="email_user">Email</label>
+                        <input type="email" name="email_user" id="email_user" placeholder="Enter your email" required autoComplete='email' onChange={changeHanlder}/>
                     </div>
                     <div className="con-input">
                         <label htmlFor="input-password">Password</label>
-                        <input type="password" name="password" id="input-password" placeholder="Enter your password" required autoComplete/>
+                        <input type="password" name="password" id="input-password" placeholder="Enter your password" required autoComplete='current-password' onChange={changeHanlder}/>
                         <button className="show-password" type="button" onClick={() => showPassword()}>
                             <img className="icon-show-password show" src={iconEye} alt=""/>
                             <img className="icon-hidden-password" src={iconEyeHidden} alt=""/>
@@ -92,6 +152,12 @@ export default function SignUp () {
                     </a>
                 </div>
             </section>
+            <div id='alert-error' className='opacity-0  fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center bg-[#000000CC] transition-all ease-in-out duration-1000 pointer-events-none'>
+                    <div className='bg-white h-fit flex flex-col items-center justify-center gap-y-7 rounded-[2px] px-12 py-5'>
+                        <p className='font-bold text-blue-700 text-xl'>{message && message ? message : "Maaf terjadi kesalahan"}</p>
+                        <button id='btn-allert' className='bg-blue-700 text-white rounded-[2px] px-7 py-2 hover:bg-blue-900 pointer-events-auto' type='button' onClick={() => {closeAllert()}}>OK</button>
+                    </div>
+                </div>
         </main>
     )
 }

@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import ReactDOM from "react-dom/client";
+import React from "react";
 
 function Card ({id, title, genres, poster, release, isUpcoming = false}){
     if(isUpcoming) {

@@ -1,0 +1,35 @@
+@media screen and (max-width: 600px) {
+    .con-movie-list .card-movies .con-details-buy {
+        height: 79%;
+    }
+   
+    .con-movie-list .con-subscribe{
+        padding-bottom: 130px;
+        margin-bottom: 0px;
+    }
+    
+    .con-movie-list .con-subscribe p {
+        font-size: 22px;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .con-movie-list .con-subscribe form {
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 14px;
+    }
+    
+    .con-movie-list .con-subscribe form input {
+        background-color: #2563EB;
+    }
+
+    .btn-submit-movie-list {
+        background-color: white !important;
+    }
+    
+    .con-movie-list .con-subscribe::after {
+        bottom: -35%;
+        right: -45%;
+    }
+}
