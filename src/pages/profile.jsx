@@ -28,7 +28,6 @@ function Profile () {
         evt.currentTarget.classList.add("border-b-4");
         evt.currentTarget.classList.add("text-[#14142B]");
         evt.currentTarget.classList.remove("text-[#AAAAAA]");
-        setActiveTab(tabName);
       }
 
     

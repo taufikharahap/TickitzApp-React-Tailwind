@@ -10,10 +10,36 @@ function MovieList (){
     const api = useApi();
     const [movies, setMovies] = useState(null);
 
+    const showGenreMovie = (evt, name) => {
+       
+        let tablinks;
+        let i;
+        
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace("text-white", "text-[#4E4B66]");
+            tablinks[i].className = tablinks[i].className.replace("bg-blue-700", "");
+        }
+        
+        evt.currentTarget.classList.add("bg-blue-700");
+        evt.currentTarget.classList.add("text-white");
+        evt.currentTarget.classList.remove("text-[#4E4B66]");
+        
+        api({ method: 'GET', url: `/genre/name?name=${name}`})
+        .then(({ data }) => {
+            setMovies(data.data)
+            console.log(data.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     useEffect(() => {
         api({ method: 'GET', url: '/movie?page=1&limit=12' })
         .then(({ data }) => {
             setMovies(data.data)
+            console.log(data.data)
         })
         .catch((err) => {
             console.log(err)
@@ -50,11 +76,11 @@ function MovieList (){
                     <div className="flex flex-col items-center md:items-start gap-y-3 md:gap-y-3">
                         <p className="font-semibold text-[#4E4B66] font-base">Filter</p>
                         <div className="flex flex-col md:flex-row md:justify-center items-center md:h-full md:gap-x-10">
-                            <button className='text-sm font-medium text-white bg-blue-700 h-fit py-3 px-6 rounded-[10px]' type="button">Thriller</button>
-                            <button className='text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button">Horror</button>
-                            <button className='text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button">Romantic</button>
-                            <button className='text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button">Adventure</button>
-                            <button className='text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button">Sci-Fi</button>
+                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Thriller")}}>Thriller</button>
+                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Horror")}}>Horror</button>
+                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Romance")}}>Romantic</button>
+                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Adventure")}}>Adventure</button>
+                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Sc-Fi")}}>Sci-Fi</button>
                         </div>
                     </div>
                 </div>

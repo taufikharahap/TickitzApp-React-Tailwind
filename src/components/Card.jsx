@@ -25,7 +25,7 @@ function Card ({id, title, genres, poster, release, isUpcoming = false}){
             <img src={poster} alt="poster movie"/>
             <p className="movie-name">{title}</p>
             <div className="con-movie-genre">
-                { genres && genres.split(', ').map((genre) => {
+                { genres &&  genres.split(', ').map((genre) => {
                         return <p className="movie-genre" key={genre}>{genre}</p>
                 })}
             </div>
