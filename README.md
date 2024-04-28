@@ -1,8 +1,37 @@
-# React + Vite
+<h1 align="center">
+  Tickitz App With React and Tailwind
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🛠️ Installation Steps
 
-Currently, two official plugins are available:
+1. Clone the repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+git clone https://github.com/taufikharahap/TickitzApp-React-Tailwind.git
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Run the app
+
+```bash
+npm run dev
+```
+
+🌟 You are all set!
+
+## 💻 Built with
+
+-   JavaScript
+-   React Js
+-   React-Redux
+-   Tailwind
+
+<hr>
+<p align="center">
+Developed with ❤️ in Indonesia 	🇮🇩
+</p>
