@@ -11,17 +11,45 @@ import '../custom-css/form-movie.css'
 function AdminMovie () {
     const api = useApi();
     const [movies, setMovies] = useState(null);
+    const [totalData, setTotalData] = useState(0)
+    const [limitPage, setLimitPage] = useState(5)
+    const [curentPage, setCurrentPage] = useState(1)
+    const [totalPagination, setTotalPagination] = useState(null)
+    const totalButton = [...Array(Math.ceil(totalData/limitPage))]
 
     useEffect(() => {
             api({ method: 'GET', url: '/movie?page=1&limit=5' })
-            .then(({ data }) => {
+            .then(({ data}) => {
+                console.log(data.meta)
+                setMovies(data.data)
+                setTotalData(parseInt(data.meta.total))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [])
+
+    const handlePagination = (e) => {
+        e.preventDefault()
+        const btnElement = document.querySelectorAll('.btn-pagination')
+
+        for (let i = 0; i < btnElement.length; i++) {
+            btnElement[i].className = btnElement[i].className.replace("bg-[#1D4ED8]", "");
+            btnElement[i].className = btnElement[i].className.replace("text-white", "");
+        }
+
+        e.target.classList.add("bg-[#1D4ED8]", "text-white");
+
+
+        api({ method: 'GET', url: `/movie?page=${e.target.id}&limit=${limitPage}`})
+            .then(({ data}) => {
                 setMovies(data.data)
             })
             .catch((err) => {
                 console.log(err)
             })
-    })
 
+    }
     const deleteMovie = (id) => {
         let confirmation = confirm('Apakah anda yakin ingin mengahpus movie ?')
         if (confirmation) {
@@ -42,7 +70,7 @@ function AdminMovie () {
                     <div className='flex flex-col md:flex-row justify-between md:px-10 px-4 '>
                         <h3 className='text-[#14142B] text-nowrap text-lg md:text-2xl font-bold'>List Movie</h3>
                         <div className='relative h-[80px] md:h-fit md:w-fit flex flex-col-reverse  md:items-end md:flex-row gap-x-5'>
-                            <input className='bg-[#EFF0F6] rounded-[8px] text-[#4E4B66] font-semibold font-base px-5 py-3'  type="month" name="date" id="" value={"2023-11"} />
+                            <input className='bg-[#EFF0F6] rounded-[8px] text-[#4E4B66] font-semibold font-base px-5 py-3 cursor-pointer'  type="month" name="date" id="" defaultValue={"2023-11"} />
                             <a href='/admin/movie/add' className='absolute right-0 -top-8 md:static w-[91px] h-[40px] md:h-fit md:w-fit flex flex-row justify-center items-center bg-blue-700 text-[#F7F7FC] md:font-bold font-base px-5 py-3 rounded-[8px]' > <span className='inline md:hidden' >&#65291; </span> Add <span className='hidden md:inline'> Movies</span></a>
                         </div>
                     </div>
@@ -78,7 +106,6 @@ function AdminMovie () {
                                                 <a href={`/admin/movie/edit/${movie.movie_id}`} className='grid items-center bg-[#5D5FEF] w-[31px] h-[31px] rounded-[6px]'><img className='block mx-auto' src={iconEdit} alt="" /></a>
                                                 <a href='' className='grid items-center bg-[#E82C2C] w-[31px] h-[31px] rounded-[6px]' 
                                                 onClick={(event) => { 
-                                                        event.preventDefault()
                                                         deleteMovie(movie.movie_id)}
                                                     }>
                                                         <img className='block mx-auto' src={iconDelete} alt="" />
@@ -90,12 +117,14 @@ function AdminMovie () {
                             </tbody>
                         </table>
                     </div>
-                    
                     <div className='flex flex-row gap-x-3 justify-center mt-8'>
-                        <button className='md:w-[40px] md:h-[40px] w-[30px] h-[30px] text-xs  rounded-[8px] border border-[#DEDEDE] bg-blue-700 text-[#FFFFFF] font-lg font-normal' type="button">1</button>
-                        <button className='md:w-[40px] md:h-[40px] w-[30px] h-[30px] text-xs  rounded-[8px] border border-[#DEDEDE] text-[#4E4B66] font-lg font-normal' type="button">2</button>
-                        <button className='md:w-[40px] md:h-[40px] w-[30px] h-[30px] text-xs  rounded-[8px] border border-[#DEDEDE] text-[#4E4B66] font-lg font-normal' type="button">3</button>
-                        <button className='md:w-[40px] md:h-[40px] w-[30px] h-[30px] text-xs  rounded-[8px] border border-[#DEDEDE] text-[#4E4B66] font-lg font-normal' type="button">4</button>
+                        {
+                            totalData && totalButton.length > 1 ? 
+                            totalButton.map((number, index) => {
+                                    return <button id={index + 1} key={index + 1} className={`btn-pagination ${index == 0 ? 'bg-[#1D4ED8] text-white' : ''} md:w-[40px] md:h-[40px] w-[30px] h-[30px] text-xs  rounded-[8px] border border-[#DEDEDE] text-[#4E4B66] font-lg font-normal`} type="button" onClick={handlePagination}>{index + 1}</button>
+                                })
+                            : ''
+                        }
                     </div>
                 </section>
             </main>

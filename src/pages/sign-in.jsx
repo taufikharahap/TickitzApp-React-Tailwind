@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import useApi from '../utils/useApi'
-import { login } from '../store/reducer/user'
+import { loginUser, loginAdmin } from '../store/reducer/user'
 import iconTickitz from '../assets/images/icons/icon-tickitz.png'
 import iconEye from '../assets/images/icons/icon-eye.svg'
 import iconEyeHidden from '../assets/images/icons/eye-password-hide-svgrepo-com.svg'
@@ -20,13 +20,16 @@ function SignIn () {
     const [userData, setUserData] = useState({});
     const [message, setMessage] = useState(null);
 
-    const {isAuth} = useSelector((state) => state.users)
+    const {isAuthUser, isAuthAdmin} = useSelector((state) => state.users)
 
     useEffect(() => {
-        if (isAuth) {
-            navigate('/profile')
+        if (isAuthAdmin) {
+            navigate('/admin/dashboard');
         }
-    }, [isAuth])
+        if (isAuthUser) {
+            navigate('/profile');
+        }
+    }, [isAuthUser, isAuthAdmin]);
 
     const changeHanlder = (e) => {
         const data = { ...userData }
@@ -43,11 +46,17 @@ function SignIn () {
             data: userData
         })
             .then(({ data }) => {
-                setTimeout(() => {
-                    dispatch(login(data.token))
-                }, 1500)
                 setMessage('Login Berhasil')
                 alertElm.classList.add('opacity-100')
+                setTimeout(() => {
+
+                    if(data.role == 'admin'){
+                        dispatch(loginAdmin(data.token))
+                    }else{
+                        dispatch(loginUser(data.token))
+                    }
+
+                }, 1500)
             })
             .catch((err) => {
                 setMessage(err.response.data.message)

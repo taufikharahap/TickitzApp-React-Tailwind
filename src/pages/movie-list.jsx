@@ -9,8 +9,25 @@ import '../custom-css/responsive-movies.css'
 function MovieList (){
     const api = useApi();
     const [movies, setMovies] = useState(null);
+    const [totalData, setTotalData] = useState(0)
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(12)
 
-    const showGenreMovie = (evt, name) => {
+    const totalButton = [...Array(Math.ceil(totalData/limit))]
+
+    useEffect(() => {
+        api({ method: 'GET', url: '/movie?page=1&limit=12' })
+        .then(({ data }) => {
+            setMovies(data.data)
+            console.log(data.data)
+            setTotalData(parseInt(data.meta.total))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }, [])
+
+    const showGenreMovie = (evt, name, page) => {
        
         let tablinks;
         let i;
@@ -35,16 +52,64 @@ function MovieList (){
         })
     }
 
-    useEffect(() => {
-        api({ method: 'GET', url: '/movie?page=1&limit=12' })
+    const searchMovies = (evt) => {
+        api({ method: 'GET', url: `/movie/search/movie?page=${page}&limit=${limit}&name=${evt.target.value}`})
         .then(({ data }) => {
             setMovies(data.data)
             console.log(data.data)
+            setTotalData(parseInt(data.meta.total))
         })
         .catch((err) => {
             console.log(err)
         })
-    }, [])
+    }
+
+    const handlePagination = (e) => {
+        e.preventDefault()
+
+        const btnElement = document.querySelectorAll('.btn-pagination')
+
+        for (let i = 0; i < btnElement.length; i++) {
+            btnElement[i].className = btnElement[i].className.replace("bg-blue-700", "");
+            btnElement[i].className = btnElement[i].className.replace("text-white", "");
+        }
+
+        e.target.classList.add("bg-blue-700", "text-white");
+
+
+        api({ method: 'GET', url: `/movie?page=${e.target.id}&limit=${limit}`})
+            .then(({ data}) => {
+                setMovies(data.data)
+                setPage(parseInt(e.target.id))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+
+    const handleNext = (e) => {
+
+        if(totalButton.length == page){
+            return;
+        }
+
+        const btnElement = document.querySelectorAll('.btn-pagination')
+        
+        btnElement[page].classList.add("bg-blue-700", "text-white");
+        btnElement[page - 1].className = btnElement[page - 1].className.replace("text-white", "text-[#4E4B66]");
+        btnElement[page - 1].className = btnElement[page - 1].className.replace("bg-blue-700", "");
+        
+        api({ method: 'GET', url: `/movie?page=${page + 1}&limit=${limit}`})
+            .then(({ data}) => {
+                setMovies(data.data)
+                setPage(page + 1)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+    
     return(
         <>
             <Header pageHomeOrMovies={true}/>
@@ -70,7 +135,7 @@ function MovieList (){
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                             </svg>
-                            <input className="outline-none" type="search" name="" id="" placeholder="New Born Expert"/>
+                            <input className="outline-none" type="search" name="" id="" placeholder="New Born Expert" onChange={event => searchMovies(event)}/>
                         </div>
                     </div>
                     <div className="flex flex-col items-center md:items-start gap-y-3 md:gap-y-3">
@@ -90,11 +155,28 @@ function MovieList (){
                             })}
                 </div>
                 <div className="flex flex-row justify-center items-center md:gap-x-7 gap-x-2 my-20">
-                    <button type="button" className="bg-blue-700 text-white w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-[50%]" >1</button>
-                    <button type="button" className="text-[#A0A3BD] bg-[#F9FAFB] rounded-full w-[30px] h-[30px] md:w-[40px] md:h-[40px]">2</button>
-                    <button type="button" className="text-[#A0A3BD] bg-[#F9FAFB] rounded-full w-[30px] h-[30px] md:w-[40px] md:h-[40px]">3</button>
-                    <button type="button" className="text-[#A0A3BD] bg-[#F9FAFB] rounded-full w-[30px] h-[30px] md:w-[40px] md:h-[40px]">4</button>
-                    <button type="button" className="bg-blue-700 text-white w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-[50%]">&#8594;</button>
+                    {
+                        totalData && totalButton.length > 1 ? 
+                            totalButton.map((number, index) => {
+                                return <button 
+                                            key={index + 1} 
+                                            id={index + 1} 
+                                            type="button" 
+                                            className={`btn-pagination text-[#A0A3BD] bg-[#F9FAFB] ${index == 0 ? 'bg-blue-700 text-white' : ''} rounded-full w-[30px] h-[30px] md:w-[40px] md:h-[40px]`}
+                                            onClick={e => handlePagination(e)}
+                                        >
+                                            {index + 1}
+                                        </button>
+                            }) 
+                            
+                            : ''
+                    }
+
+                    {
+                        totalData && totalButton.length != page ?
+                            <button type="button" className="btn-next bg-blue-700 text-white w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-[50%]" onClick={handleNext}>&#8594;</button>
+                        : ''
+                    }
                 </div>
                 <article className="con-subscribe">
                     <p>Subscribe to our newsletter</p>

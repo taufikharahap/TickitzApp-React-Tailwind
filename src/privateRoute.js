@@ -1,11 +1,22 @@
 import { Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-const PrivateRoute = ({ children }) => {
-    const {isAuth} = useSelector((state) => state.users)
-    // const isAuth = true;
+const PrivateRouteAdmin = ({ children }) => {
+    const {isAuthAdmin} = useSelector((state) => state.users)
+    // const isAuthAdmin = true;
 
-    if (!isAuth) {
+    if (!isAuthAdmin) {
+        return <Navigate to='/sign-in' />
+    }
+
+    return children
+}
+
+const PrivateRouteUser = ({ children }) => {
+    const {isAuthUser} = useSelector((state) => state.users)
+    // const isAuthUser = false;
+
+    if (!isAuthUser) {
         return <Navigate to='/sign-in' />
     }
 
@@ -13,4 +24,4 @@ const PrivateRoute = ({ children }) => {
 }
 
 
-export default PrivateRoute
+export {PrivateRouteAdmin, PrivateRouteUser}

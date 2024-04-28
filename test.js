@@ -1,17 +1,20 @@
-// const genre = "action, adventure"
+// const formData = new FormData()
+        // for (const key in data) {
+        //     formData.append(`${key}`, data[key])
+        // }
 
 // const showFormattedDate = (date) => {
 //     const options = {
 //       year: "numeric",
-//       month: "long",
-//       day: "numeric"
+//       month: "2-digit",
+//       day: "2-digit",
 //     }
-//     return new Date(date).toLocaleDateString("en-US", options)
+//     return new Date(date).toLocaleDateString('en-US', options)
+//     // return new Date(date).toISOString().split('T')[0]
 //   }
 
 //   console.log(showFormattedDate('2023-12-31T17:00:00.000Z'))
 
-//   export default showFormattedDate;
 
 // let a = {
 //         sapa : "hay"
@@ -32,7 +35,10 @@
                             }
                         }>Sign Out</a>
                     </div> */
-if (confirm('?')) {
-    console.log(confir)
-    
-}
+// let a = 'tes'
+
+// let b = a.split(', ')
+// console.log(b)
+
+const items = [...Array(33).keys()];
+console.log(items[2])

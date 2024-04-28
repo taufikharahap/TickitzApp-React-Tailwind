@@ -3,27 +3,35 @@ import { createSlice } from '@reduxjs/toolkit'
 const userSlice = createSlice({
     name: 'users',
     initialState: {
-        isAuth: false,
+        isAuthUser: false,
         isAuthAdmin: false,
         token: ''
     },
     reducers: {
-        login(state, actions) {
+        loginUser(state, actions) {
             return {
                 ...state,
-                isAuth: true,
+                isAuthUser: true,
+                token: actions.payload
+            }
+        },
+        loginAdmin(state, actions) {
+            return {
+                ...state,
+                isAuthAdmin: true,
                 token: actions.payload
             }
         },
         logout(state, actions) {
             return {
                 ...state,
-                isAuth: false,
+                isAuthUser: false,
+                isAuthAdmin : false,
                 token: ''
             }
         },
     }
 })
 
-export const { login, logout } = userSlice.actions
+export const { loginUser, loginAdmin, logout } = userSlice.actions
 export default userSlice.reducer

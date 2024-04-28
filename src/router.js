@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import PrivateRoute from "./privateRoute"
+import {PrivateRouteUser, PrivateRouteAdmin} from "./privateRoute"
 import Home from './pages/home'
 import MovieList from './pages/movie-list'
 import MovieDetail from './pages/movie-detail';
@@ -36,34 +36,43 @@ export default createBrowserRouter([
     {
         path: '/profile',
         element: (
-            <PrivateRoute>
+            <PrivateRouteUser>
                 <Profile />
-            </PrivateRoute>
+            </PrivateRouteUser>
         )
     }, 
-    // {
-    //     path: '/admin/dashboard',
-    //     element: (
-    //         <PrivateRoute>
-    //             <AdminDashboard />
-    //         </PrivateRoute>
-    //     )
-    // },
     {
         path: '/admin/dashboard',
-        element: <AdminDashboard />
+        element: (
+            <PrivateRouteAdmin>
+                <AdminDashboard />
+            </PrivateRouteAdmin>
+        )
     },
     {
         path: '/admin/movie',
-        element: <AdminMovie />
+        element: (
+            <PrivateRouteAdmin>
+                <AdminMovie />
+            </PrivateRouteAdmin>
+        ) 
     },
     {
         path: '/admin/movie/edit/:id',
-        element : <EditMovie/>
+        element : (
+            <PrivateRouteAdmin>
+                <EditMovie/>
+            </PrivateRouteAdmin>
+        ) 
     },
     {
         path: '/admin/movie/add',
-        element : <AddMovie/>
+        element : (
+            <PrivateRouteAdmin>
+                <AddMovie/>
+            </PrivateRouteAdmin>
+        )
+
     },
     {
         path: '*',

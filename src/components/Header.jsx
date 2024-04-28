@@ -7,7 +7,7 @@ import iconTickitz from '../assets/images/icons/Tickitz-1.png'
 import iconProfile from '../assets/images/icons/Ellipse 11.png'
 
 export default function Header ({pageHomeOrMovies = false, pageProfile = false, pageAdmin = false}) {
-    const {isAuth} = useSelector((state) => state.users);
+    const {isAuthUser, isAuthAdmin} = useSelector((state) => state.users);
     const dispatch = useDispatch();
     const params = useParams();
 
@@ -38,7 +38,7 @@ export default function Header ({pageHomeOrMovies = false, pageProfile = false, 
                         <li><a href="">Buy Ticket</a></li>
                         <li className='md:hidden'><a href="/profile">Profile</a></li>
                         <ul id="con-btn-sign-side">
-                            {isAuth ? 
+                            {isAuthUser ? 
                                 (
                                 <>
                                     <li id="btn-sign-in"><a href="" 
@@ -59,7 +59,7 @@ export default function Header ({pageHomeOrMovies = false, pageProfile = false, 
                         </ul>
                     </ul>
                 </nav>
-                {isAuth ? 
+                {isAuthUser ? 
                     (
                         <div className='hidden relative group cursor-pointer md:flex justify-end'>
                             <img src={iconProfile} alt=""/>
@@ -157,8 +157,17 @@ export default function Header ({pageHomeOrMovies = false, pageProfile = false, 
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
                     </button>
-                    <div>
+                    <div className='relative group cursor-pointer'>
                         <img src={iconProfile} alt=""/>
+                        <span className='hidden group-hover:flex hover:flex md:absolute flex flex-col md:h-[60px] md:shadow-xl hover:shadow-2xl bg-white py-5 mt-0 rounded-[4px]'>
+                            <a className='text-nowrap font-light px-5 py-2 hover:bg-slate-100' 
+                                href="" 
+                                onClick={(e) => {
+                                        e.preventDefault()
+                                        dispatch(logout())
+                                    }
+                                }>Sign out</a>
+                        </span>
                     </div>
                 </div>
                 <button className="flex md:hidden" id="btn-menu" type="button">

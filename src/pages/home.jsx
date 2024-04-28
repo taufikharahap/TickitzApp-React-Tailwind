@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import useApi from '../utils/useApi';
 import Header from '../components/Header';
 import imageHero35 from '../assets/images/Rectangle 35.png'
