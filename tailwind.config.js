@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'sign': "url('./src/assets/images/background-sign-up.png')",
+        'sign': "url('./public/assets/images/background-sign-up.png')",
       }
     },
     fontFamily: {
