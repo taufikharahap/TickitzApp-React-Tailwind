@@ -140,8 +140,8 @@ article .sub-title {
 }
 
 .con-card-movies .card-movies img {
-    width: 264px;
-    height: 405px;
+    width: 264px !important;
+    height: 405px !important;
 }
 
 .card-movies .movie-name {
