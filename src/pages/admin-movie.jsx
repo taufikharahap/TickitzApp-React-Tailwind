@@ -65,8 +65,8 @@ function AdminMovie () {
     return (
         <>
             <Header pageAdmin={true}/>
-            <main className='font-Mulish min-h-screen bg-[#EFF0F6] md:py-20 py-28 pb-10 overflow-x-hidden'>
-                <section id='movie' className='tabcontent w-[80%] bg-white mx-auto rounded-[10px] py-7 md:py-20 px-5 md:px-20 overflow-x-hidden'>
+            <main className='font-Mulish min-h-screen bg-[#EFF0F6] md:py-16 py-28 pb-10 overflow-x-hidden'>
+                <section id='movie' className='tabcontent w-[80%] bg-white mx-auto rounded-[10px] py-7 md:py-14 px-5 md:px-20 overflow-x-hidden'>
                     <div className='flex flex-col md:flex-row justify-between'>
                         <h3 className='text-[#14142B] text-nowrap text-lg md:text-2xl font-bold'>List Movie</h3>
                         <div className='relative h-[80px] md:h-fit md:w-fit flex flex-col-reverse  md:items-end md:flex-row gap-x-5'>

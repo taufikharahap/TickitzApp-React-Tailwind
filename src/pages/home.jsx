@@ -119,10 +119,14 @@ function Home () {
                 <article className="con-movies">
                     <h2 className="title">MOVIES</h2>
                     <p className="sub-title sub-title-movie">Exciting Movies That Should Be Watched Today</p>
-                    <div className="grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies">
-                        {movies && movies.map((movie) =>{
+                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[300px]">
+                        {movies ?  movies.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
-                        })}
+                        }) :
+                        <div className=' absolute w-full h-full flex flex-col justify-center items-center'>
+                            <span className='text-blue-600 bg-blue-50 p-5'>Movie tidak ditemukan, terjadi kesalahan server !</span>
+                        </div>
+                    }
                     </div>
                     <a href='/movies' className="link-view-all">View All <span>&#8594;</span></a>
                 </article>
@@ -133,10 +137,14 @@ function Home () {
                         <button className={`btn-left ${page == 1 ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600"} `} onClick={prevMoviesUpcomming}><span className='-mt-1' >&#8592;</span></button>
                         <button className={`btn-right ${page == totalPage ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600 "}`} onClick={nextMoviesUpcomming}><span className='-mt-1' >&#8594;</span></button>
                     </div>
-                    <div className="grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies">
-                    {moviesUpcomming && moviesUpcomming.map((movie) =>{
+                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[300px]">
+                    {moviesUpcomming ? moviesUpcomming.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} release={movie.release_date} isUpcoming={true} key={movie.movie_id}/>
-                        })}
+                        }) :
+                        <div className=' absolute w-full h-full flex flex-col justify-center items-center'>
+                            <span className='text-blue-600 bg-blue-50 p-5'>Movie tidak ditemukan, terjadi kesalahan server !</span>
+                        </div>
+                    }
                     </div>
                 </article>
                 <article className="con-subscribe">

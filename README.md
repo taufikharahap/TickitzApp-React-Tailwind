@@ -2,6 +2,11 @@
   Tickitz App With React and Tailwind
 </h1>
 
+<p align="center"><img src="./src/assets/images/ss/home.png" width="100%" alt="Screenshot home" /></p>
+<p align="center"><img src="./src/assets/images/ss/movies.png" width="100%" alt="Screenshot home" /></p>
+<p align="center"><img src="./src/assets/images/ss/profile.png" width="100%" alt="Screenshot home" /></p>
+<p align="center"><img src="./src/assets/images/ss/admin.png" width="100%" alt="Screenshot home" /></p>
+
 ## 🛠️ Installation Steps
 
 1. Clone the repository

@@ -158,6 +158,7 @@ function Profile () {
         setLoading(true)
 
         if (newPassword !== confirmPassword) {
+            setLoading(false)
             setMessage("Password konfirmasi tidak sama")
             return
             
