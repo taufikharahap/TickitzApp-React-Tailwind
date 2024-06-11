@@ -107,7 +107,7 @@ function SignIn () {
                                 <img className="icon-hidden-password" src={iconEyeHidden} alt=""/>
                             </button>
                         </div>
-                        <a href="" className="forget-password w-fit self-end">Forgot your password?</a>
+                        <a href="/sign-in" className="forget-password w-fit self-end">Forgot your password?</a>
                         <input className="btn-submit" type="submit" value="Login" />
                     </form>
                     <div className="link-login">
