@@ -191,8 +191,8 @@ article .sub-title {
 }
 
 .card-movies .dark-image {
-    width: 264px;
-    height: 405px;
+    width: 264px !important;
+    height: 405px !important;
     background-color: #00000066;
     position: absolute;
     top: 0;

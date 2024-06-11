@@ -177,7 +177,7 @@ function MovieList (){
                         </div>
                     </div>
                 </div>
-                <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[400px]">
+                <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[100px]">
                     {movies ? movies.map((movie) =>{
                         return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
                     }) 

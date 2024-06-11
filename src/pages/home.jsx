@@ -119,7 +119,7 @@ function Home () {
                 <article className="con-movies">
                     <h2 className="title">MOVIES</h2>
                     <p className="sub-title sub-title-movie">Exciting Movies That Should Be Watched Today</p>
-                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[300px]">
+                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[100px]">
                         {movies ?  movies.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
                         }) :
@@ -137,7 +137,7 @@ function Home () {
                         <button className={`btn-left ${page == 1 ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600"} `} onClick={prevMoviesUpcomming}><span className='-mt-1' >&#8592;</span></button>
                         <button className={`btn-right ${page == totalPage ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600 "}`} onClick={nextMoviesUpcomming}><span className='-mt-1' >&#8594;</span></button>
                     </div>
-                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[300px]">
+                    <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[100px]">
                     {moviesUpcomming ? moviesUpcomming.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} release={movie.release_date} isUpcoming={true} key={movie.movie_id}/>
                         }) :
