@@ -99,12 +99,13 @@
         line-height: 32px;
     }
 
-    .con-card-movies .card-movies {
-        width: 200px;
-    }
+    /* .con-card-movies .card-movies {
+        width: 200px !important;
+    } */
     
     .con-card-movies .card-movies img {
-        height: 300px;
+        height: 300px !important;
+        width: 200px !important;
     }
     
     .card-movies .movie-name {
