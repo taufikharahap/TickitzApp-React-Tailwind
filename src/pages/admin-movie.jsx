@@ -65,9 +65,9 @@ function AdminMovie () {
     return (
         <>
             <Header pageAdmin={true}/>
-            <main className='font-Mulish min-h-screen mt-16 md:mt-24 bg-[#EFF0F6] py-20 overflow-x-hidden'>
-                <section id='movie' className='tabcontent w-[80%] bg-white mx-auto rounded-[10px] py-7 overflow-x-hidden'>
-                    <div className='flex flex-col md:flex-row justify-between md:px-10 px-4 '>
+            <main className='font-Mulish min-h-screen bg-[#EFF0F6] md:py-20 py-28 pb-10 overflow-x-hidden'>
+                <section id='movie' className='tabcontent w-[80%] bg-white mx-auto rounded-[10px] py-7 md:py-20 px-5 md:px-20 overflow-x-hidden'>
+                    <div className='flex flex-col md:flex-row justify-between'>
                         <h3 className='text-[#14142B] text-nowrap text-lg md:text-2xl font-bold'>List Movie</h3>
                         <div className='relative h-[80px] md:h-fit md:w-fit flex flex-col-reverse  md:items-end md:flex-row gap-x-5'>
                             <input className='bg-[#EFF0F6] rounded-[8px] text-[#4E4B66] font-semibold font-base px-5 py-3 cursor-pointer'  type="month" name="date" id="" defaultValue={"2023-11"} />
@@ -75,7 +75,7 @@ function AdminMovie () {
                         </div>
                     </div>
                     <div className='overflow-x-scroll md:overflow-x-hidden'>
-                        <table className="w-full border-separate border-spacing-x-4 md:border-spacing-x-0 md:px-10 mt-8">
+                        <table className="w-full border-separate border-spacing-x-4 md:border-spacing-x-0 mt-8">
                             <thead className='text-nowrap'>
                                 <tr className='border-b border-slate-300 text-left md:text-center'>
                                     <th className='text-[#1F4173] text-xs font-bold py-3'>No</th>

@@ -9,16 +9,18 @@ import iconEyeHidden from '../assets/images/icons/eye-password-hide-svgrepo-com.
 import iconGoogle from '../assets/images/icons/google-icon.png'
 import iconFb from '../assets/images/icons/fb-icon.png'
 import '../custom-css/sign-in.css'
+import Alert from '../components/Alert'
+import Loading from '../components/Loading'
 
 
 function SignIn () {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const api = useApi();
-    const alertElm = document.querySelector("#alert-error");
 
     const [userData, setUserData] = useState({});
     const [message, setMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const {isAuthUser, isAuthAdmin} = useSelector((state) => state.users)
 
@@ -39,6 +41,7 @@ function SignIn () {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true)
 
         api({
             method: 'POST',
@@ -46,27 +49,23 @@ function SignIn () {
             data: userData
         })
             .then(({ data }) => {
+                setLoading(false)
                 setMessage('Login Berhasil')
-                alertElm.classList.add('opacity-100')
                 setTimeout(() => {
+                    console.log(data)
 
                     if(data.role == 'admin'){
-                        dispatch(loginAdmin(data.token))
+                        dispatch(loginAdmin(data))
                     }else{
-                        dispatch(loginUser(data.token))
+                        dispatch(loginUser(data))
                     }
 
                 }, 1500)
             })
             .catch((err) => {
+                setLoading(false)
                 setMessage(err.response.data.message)
-                alertElm.classList.add('opacity-100')
-
             })
-    }
-
-    const closeAllert = () => {
-        alertElm.classList.remove('opacity-100')
     }
 
     const showPassword = () => {
@@ -86,15 +85,6 @@ function SignIn () {
         iconHiddenPassword.classList.add("show");
         iconShowPassword.classList.remove("show");
     }
-
-    //Menghilangkan alert secara otomatis
-    useEffect(() => {
-        if (message) {
-            setTimeout(() => {
-                alertElm.classList.remove('opacity-100');
-            }, 7000)
-        }
-    },[message])
 
     return (
             <main className='con-page-sigin'>
@@ -140,12 +130,9 @@ function SignIn () {
                         </a>
                     </div>
                 </section>
-                <div id='alert-error' className='opacity-0  fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center bg-[#000000CC] transition-all ease-in-out duration-1000 pointer-events-none'>
-                    <div className='bg-white h-fit flex flex-col items-center justify-center gap-y-7 rounded-[2px] px-12 py-5'>
-                        <p className='font-bold text-blue-700 text-xl'>{message && message ? message : "Maaf terjadi kesalahan"}</p>
-                        <button id='btn-alert' className='bg-blue-700 text-white rounded-[2px] px-7 py-2 hover:bg-blue-900 pointer-events-auto' type='button' onClick={() => {closeAllert()}}>OK</button>
-                    </div>
-                </div>
+                {/* alert notification */}
+                {loading ? <Loading /> : ''}
+                {message ? <Alert msg={message} setMsg={setMessage} /> : ''}
             </main>
     )
 }

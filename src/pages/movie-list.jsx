@@ -5,21 +5,26 @@ import Footer from '../components/Footer';
 import Card from '../components/Card';
 import '../custom-css/movie-list.css'
 import '../custom-css/responsive-movies.css'
+import Carousel from '../components/Carousel';
+import hero1 from '../assets/images/hero1.png'
+import hero2 from '../assets/images/Rectangle-613.png'
 
 function MovieList (){
     const api = useApi();
     const [movies, setMovies] = useState(null);
     const [totalData, setTotalData] = useState(0)
     const [page, setPage] = useState(1)
-    const [limit, setLimit] = useState(12)
+    const [limit, setLimit] = useState(4)
+    const [genre, setGenre] = useState('')
+    const [nameMovie, setNameMovie] = useState('')
+
 
     const totalButton = [...Array(Math.ceil(totalData/limit))]
 
     useEffect(() => {
-        api({ method: 'GET', url: '/movie?page=1&limit=12' })
+        api({ method: 'GET', url: `/movie?page=1&limit=4` })
         .then(({ data }) => {
             setMovies(data.data)
-            console.log(data.data)
             setTotalData(parseInt(data.meta.total))
         })
         .catch((err) => {
@@ -27,7 +32,9 @@ function MovieList (){
         })
     }, [])
 
-    const showGenreMovie = (evt, name, page) => {
+    const showGenreMovie = (evt, name) => {
+        setTotalData(0)
+        setGenre(name)
        
         let tablinks;
         let i;
@@ -42,10 +49,10 @@ function MovieList (){
         evt.currentTarget.classList.add("text-white");
         evt.currentTarget.classList.remove("text-[#4E4B66]");
         
-        api({ method: 'GET', url: `/genre/name?name=${name}`})
+        api({ method: 'GET', url: `/movie/search/movie?page=${page}&limit=${limit}&genre=${name}&name=${nameMovie}`})
         .then(({ data }) => {
             setMovies(data.data)
-            console.log(data.data)
+            setTotalData(parseInt(data.meta.total))
         })
         .catch((err) => {
             console.log(err)
@@ -53,10 +60,12 @@ function MovieList (){
     }
 
     const searchMovies = (evt) => {
-        api({ method: 'GET', url: `/movie/search/movie?page=${page}&limit=${limit}&name=${evt.target.value}`})
+        setTotalData(0)
+        setNameMovie(evt.target.value)
+
+        api({ method: 'GET', url: `/movie/search/movie?page=${page}&limit=${limit}&name=${evt.target.value}&genre=${genre}`})
         .then(({ data }) => {
             setMovies(data.data)
-            console.log(data.data)
             setTotalData(parseInt(data.meta.total))
         })
         .catch((err) => {
@@ -100,7 +109,7 @@ function MovieList (){
         btnElement[page - 1].className = btnElement[page - 1].className.replace("text-white", "text-[#4E4B66]");
         btnElement[page - 1].className = btnElement[page - 1].className.replace("bg-blue-700", "");
         
-        api({ method: 'GET', url: `/movie?page=${page + 1}&limit=${limit}`})
+        api({ method: 'GET', url: `/movie/search/movie?page=${page+1}&limit=${limit}&name=${nameMovie}&genre=${genre}`})
             .then(({ data}) => {
                 setMovies(data.data)
                 setPage(page + 1)
@@ -109,50 +118,74 @@ function MovieList (){
                 console.log(err)
             })
     }
+
+    const dataCarousel = [
+        {
+            title : "LIST MOVIE OF THE WEEK",
+            content : "Experience the Magic of Cinema: Book Your Tickets Today",
+            img : hero1
+        },
+        {
+            title : "LIST MOVIE OF THE WEEK",
+            content : "Experience the Magic of Cinema: Book Your Tickets Today",
+            img : hero2
+        },
+        {
+            title : "LIST MOVIE OF THE WEEK",
+            content : "Experience the Magic of Cinema: Book Your Tickets Today",
+            img : hero1
+        }
+    ]
     
     return(
         <>
             <Header pageHomeOrMovies={true}/>
-            <div className="con-hero-movies relative mt-20 md:mt-0">
-                <div className="con-hero-content w-screen bg-sign bg-no-repeat bg-cover bg-center p-10 md:p-24 overflow-hidden">
-                    <div className="content-hero relative w-[100%] md:w-[45%] z-[2]">
-                        <h3 className='text-white font-bold text-xs md:text-lg mb-2 md:mb-7'>LIST MOVIE OF THE WEEK</h3>
-                        <p className='text-white font-normal text-lg md:text-5xl leading-normal'>Experience the Magic of Cinema: Book Your Tickets Today</p>
-                    </div>
-                </div>
-                <div className="con-dot-button absolute bottom-5 right-[50%] flex flex-row gap-x-2 z-[3]">
-                    <button className='w-[20px] h-[3px] md:w-[43px] md:h-[6px] bg-[#1D4ED8] rounded-[20px]' type="button"></button>
-                    <button className='w-[3px] h-[3px] md:w-[5px] md:h-[5px] bg-white rounded-[50%]' type="button"></button>
-                    <button className='w-[3px] h-[3px] md:w-[5px] md:h-[5px] bg-white rounded-[50%]' type="button"></button>
-                </div>
-                <span className="dark-hero absolute top-0 left-0 w-screen h-full bg-gradient-to-r from-[#000000bf] to-[#000000bf] z-0"></span>
-            </div>
+            <Carousel autoSlide={true}>
+                {dataCarousel.map((e, i) => {
+                    return (
+                        <div key={i} className="relative w-screen flex overflow-x-hidden">
+                            <div className="w-screen">
+                                <img className="w-screen md:h-[415px] h-[275px]" src={e.img} alt="img" />
+                            </div>
+                            <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center md:ps-28 p-5 bg-[#0000008f]">
+                                <h3 className='w-[100%] md:w-[45%] text-white font-bold text-xs md:text-lg mb-3 md:mb-5'>{e.title}</h3>
+                                <p className='w-[100%] md:w-[45%] text-white font-normal text-lg md:text-5xl leading-normal'>{e.content}</p>
+                            </div>
+                        </div>
+                    )
+                })}
+            </Carousel>
             <main className="con-movie-list font-Muslish p-10 md:p-24 overflow-x-hidden overflow-y-hidden">
                 <div className="flex flex-col md:flex-row gap-x-5 gap-y-5 p-0">
-                    <div className="flex flex-col items-center md:items-start gap-y-3">
+                    <div className="flex flex-col md:items-start gap-y-3">
                         <label className="form-label font-semibold text-[#4E4B66] font-base" htmlFor="search-movie">Cari Event</label>
-                        <div className="flex flex-row justify-center items-center gap-x-2 bg-white border border-[#DEDEDE] rounded-[4px] p-4">
+                        <div className="flex flex-row items-center gap-x-2 bg-white border border-[#DEDEDE] rounded-[4px] md:p-4 p-2 ps-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                             </svg>
-                            <input className="outline-none" type="search" name="" id="" placeholder="New Born Expert" onChange={event => searchMovies(event)}/>
+                            <input className="w-full outline-none placeholder:text-sm md:placeholder:text-base" type="search" name="" id="" placeholder="New Born Expert" onChange={event => searchMovies(event)}/>
                         </div>
                     </div>
-                    <div className="flex flex-col items-center md:items-start gap-y-3 md:gap-y-3">
-                        <p className="font-semibold text-[#4E4B66] font-base">Filter</p>
-                        <div className="flex flex-col md:flex-row md:justify-center items-center md:h-full md:gap-x-10">
-                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Thriller")}}>Thriller</button>
-                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Horror")}}>Horror</button>
-                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Romance")}}>Romantic</button>
-                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Adventure")}}>Adventure</button>
-                            <button className='tablinks text-sm font-medium text-[#4E4B66] h-fit py-3 px-6 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Sc-Fi")}}>Sci-Fi</button>
+                    <div className="flex flex-col items-start gap-y-3 md:gap-y-3">
+                        <p className="font-semibold text-[#4E4B66] md:ms-6 ms-0 font-base">Filter</p>
+                        <div className="flex flex-wrap md:flex-row md:justify-center items-center md:h-full md:gap-x-10 gap-3">
+                            <button className='tablinks border md:border-none text-sm font-medium text-[#4E4B66] h-fit md:py-3 py-2 md:px-6 px-3 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Thriller")}}>Thriller</button>
+                            <button className='tablinks border md:border-none text-sm font-medium text-[#4E4B66] h-fit md:py-3 py-2 md:px-6 px-3 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Horror")}}>Horror</button>
+                            <button className='tablinks border md:border-none text-sm font-medium text-[#4E4B66] h-fit md:py-3 py-2 md:px-6 px-3 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Romance")}}>Romantic</button>
+                            <button className='tablinks border md:border-none text-sm font-medium text-[#4E4B66] h-fit md:py-3 py-2 md:px-6 px-3 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Adventure")}}>Adventure</button>
+                            <button className='tablinks border md:border-none text-sm font-medium text-[#4E4B66] h-fit md:py-3 py-2 md:px-6 px-3 rounded-[10px]' type="button" onClick={(event) => {showGenreMovie(event, "Sc-Fi")}}>Sci-Fi</button>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row gap-x-4 md:grid md:grid-cols-4 md:gap-7 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movie-list">
-                    {movies && movies.map((movie) =>{
-                                return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
-                            })}
+                <div className="relative grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies min-h-[400px]">
+                    {movies ? movies.map((movie) =>{
+                        return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
+                    }) 
+                    :
+                    <div className=' absolute w-full h-full flex flex-col justify-center items-center'>
+                        <span className='text-blue-600 bg-blue-50 p-5'>Maaf, movie tidak ditemukan !</span>
+                    </div> 
+                    }
                 </div>
                 <div className="flex flex-row justify-center items-center md:gap-x-7 gap-x-2 my-20">
                     {

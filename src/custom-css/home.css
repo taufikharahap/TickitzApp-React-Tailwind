@@ -2,102 +2,6 @@ body {
     font-family: 'Mulish', sans-serif;
 }
 
-.app-bar {
-    height: 104px;
-    width: 100vw;
-    border-bottom: 1px solid #DEDEDE;
-    padding: 0px 120px 0px 120px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.app-bar .icon-tickitz-home img {
-    width: 130px;
-    height: 51px;
-}
-
-.btn-nav #check-menu {
-    position: absolute;
-    top: -20px;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    opacity: 1;    
-}
-
-.app-bar .btn-nav {
-    z-index: 999;
-    display: none;
-}
-
-.app-bar #btn-menu {
-    background-color: #FFFFFF;
-    outline: none;
-    border: none;
-}
-
-.app-bar #btn-menu {
-    display: none;
-}
-
-#con-btn-sign-side {
-    display: none;
-}
-
-.app-bar nav ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
-    gap: 60px;
-    list-style: none;
-}
-
-.app-bar nav ul li a{
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
-    text-wrap: nowrap;
-    color: #0F172A;
-}
-
-.app-bar nav ul li a:hover {
-    text-decoration: underline;   
-}
-
-.con-btn-sign {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-}
-
-.con-btn-sign a {
-    padding: 12px 18px 12px 18px;
-    text-decoration: none;
-    color: #1D4ED8;
-    border: 1px solid #1D4ED8;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.con-btn-sign .btn-sign-up {
-    color: #ffffff;
-    background-color: #1D4ED8;
-    border-color: #1D4ED8;
-}
-
-.con-btn-sign .btn-sign-up:hover {
-    color: #FFFFFF;
-    background-color: #133288;
-    border-color: #1D4ED8;
-}
-
-.con-btn-sign .btn-sign-in:hover {
-    color: #ffffff;
-    background-color: #143696;
-}
-
 .con-page-home {
     display: block;
     padding-top: 50px;
@@ -207,38 +111,37 @@ article .sub-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 .con-movies .title, .con-movies .sub-title-movie {
         text-align: center;
         max-width: 500px;
+        margin: auto auto;
 }
 
-.con-card-movies {
+/* .con-card-movies {
     width: 100%;
-    /* padding: 0; */
+    padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: nowrap;
     padding-bottom: 20px;
-}
+} */
 
 .con-card-movies .card-movies {
     position: relative;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    width: 23%;
     border-radius: 4px;
     z-index: 0;
-    /* background-color: #0F172A; */
+    margin-bottom: 20px;
 }
 
 .con-card-movies .card-movies img {
-    width: 100%;
-    height: auto;
-    /* margin-bottom: 20px; */
+    width: 264px;
+    height: 405px;
 }
 
 .card-movies .movie-name {
@@ -259,27 +162,6 @@ article .sub-title {
     padding: 12px 25px 12px 25px;
     border-radius: 20px;
     color: #4e4f58;
-}
-
-.card-movies .con-details-buy {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    row-gap: 12px;
-    background-color: #00000066;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 81%;
-    border-radius: 4px;
-    z-index: 2;
-    opacity: 0;
-}
-
-.con-movies-upcoming .card-movies .con-details-buy{
-    height: 74.5%;
 }
 
 .con-card-movies .card-movies:hover .con-details-buy{
@@ -339,7 +221,7 @@ article .sub-title {
     height: 13px;
     background-color: #163899;
     position: absolute;
-    top: 8%;
+    top: 9.1%;
     left: -2%;
     transform: rotate(-45deg);
     z-index: -1;
@@ -349,6 +231,7 @@ article .sub-title {
     color: #1D4ED8;
     font-size: 18px;
     font-weight: 700;
+    margin: 16px auto;
 }
 
 .con-movies-upcoming {
@@ -378,7 +261,7 @@ article .sub-title {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #A0A3BD;
+    /* background-color: #A0A3BD; */
     border-radius: 50%;
     color: #FFFFFF;
     outline: none;
@@ -387,9 +270,9 @@ article .sub-title {
     cursor: pointer;
 }
 
-.btn-movies-upcoming .btn-right {
+/* .btn-movies-upcoming .btn-right {
     background-color: #1D4ED8;
-}
+} */
 
 .con-subscribe {
     position: relative;
@@ -400,7 +283,7 @@ article .sub-title {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: auto auto;
+    margin: 40px auto;
     padding: 60px 30px 80px 30px !important;
 }
 

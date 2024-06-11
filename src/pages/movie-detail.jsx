@@ -158,9 +158,9 @@ function MovieDetail () {
                                         </div>
                                     </label>
                                     <label className ="con-btn-cinema" htmlFor="hiflix">
-                                        <input id="hiflix" type="checkbox" name="hiflix" value="hiflix" checked />
+                                        <input id="hiflix" type="checkbox" name="hiflix" value="hiflix" />
                                         <div className ="btn-cinema">
-                                            <img className ="icon-cover" id="icon-hiflix-desktop" src={iconHiflixWhite} alt=""/>
+                                            <img className ="icon-cover" id="icon-hiflix-desktop" src={iconHiflix2} alt=""/>
                                             <img className ="icon-cover" id="icon-hiflix-mobile" src={iconHiflix2} alt=""/>
                                             <div className ="con-cover-cinema">
                                                 <div className ="left-cinema-detail">

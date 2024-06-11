@@ -6,11 +6,12 @@
     border-radius: 4px;
     z-index: 0;
     margin-bottom: 20px;
+
 }
 
 .con-card-movie-list .card-movies img {
-    width: 100%;
-    height: auto;
+    width: 264px;
+    height: 405px;
 }
 
 .card-movies .movie-name {
@@ -42,15 +43,11 @@
     background-color: #00000066;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 81%;
+    width: 264px;
+    height: 405px;
     border-radius: 4px;
     z-index: 2;
     opacity: 0;
-}
-
-.con-movies-upcoming .card-movies .con-details-buy{
-    height: 74.5%;
 }
 
 .con-card-movie-list .card-movies:hover .con-details-buy{
@@ -87,33 +84,6 @@
     top: 0;
     left: 0;
     z-index: 1;
-}
-
-.card-movies .recomended {
-    width: 50%;
-    background-color: #1D4ED8;
-    border-radius: 10px 20px 20px 0px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #FFFFFF;
-    padding: 10px;
-    letter-spacing: 0.75px;
-    text-align: center;
-    position: absolute;
-    top: 2%;
-    left: -10px;
-    z-index: 2;
-}
-
-.card-movies .mark-shadow{
-    width: 8px;
-    height: 13px;
-    background-color: #163899;
-    position: absolute;
-    top: 8%;
-    left: -2%;
-    transform: rotate(-45deg);
-    z-index: -1;
 }
 
 .con-movie-list .con-subscribe {

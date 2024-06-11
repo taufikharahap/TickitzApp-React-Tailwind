@@ -3,13 +3,13 @@ import React from "react";
 function Card ({id, title, genres, poster, release, isUpcoming = false}){
     if(isUpcoming) {
         return (
-            <div className="card-movies">
-                <img src={poster} alt="poster movie"/>
+            <div className="card-movies mx-5">
+                <img className="" src={poster} alt="poster movie"/>
                 <p className="movie-name">{title}</p>
                 <span className="release-date">{release}</span>
                 <div className="con-movie-genre">
-                    { genres && genres.split(', ').map((genre) => {
-                            return <p className="movie-genre" key={genre}>{genre}</p>
+                    { genres && genres.split(', ').map((genre, i) => {
+                            return <p className="movie-genre" key={i}>{genre}</p>
                     })}
                 </div>
                 <div className="con-details-buy">
@@ -21,12 +21,12 @@ function Card ({id, title, genres, poster, release, isUpcoming = false}){
     }
 
     return (
-        <div className="card-movies">
-            <img src={poster} alt="poster movie"/>
+        <div className="card-movies mx-5">
+            <img className="" src={poster} alt="poster movie"/>
             <p className="movie-name">{title}</p>
             <div className="con-movie-genre">
-                { genres &&  genres.split(', ').map((genre) => {
-                        return <p className="movie-genre" key={genre}>{genre}</p>
+                { genres &&  genres.split(', ').map((genre, i) => {
+                        return <p className="movie-genre" key={i}>{genre}</p>
                 })}
             </div>
             <div className="con-details-buy">
@@ -34,7 +34,7 @@ function Card ({id, title, genres, poster, release, isUpcoming = false}){
                 <a className="btn-buy">Buy Ticket</a>
             </div>
             {
-                title == 'The Witches' || 
+                title == 'Avatar New' || 
                 title == 'Tenet' ? 
                 <>
                     <p className="recomended">Recomended</p>

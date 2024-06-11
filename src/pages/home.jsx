@@ -14,19 +14,59 @@ import Card from '../components/Card';
 import Footer from '../components/Footer';
 
 
+
 function Home () {
     const api = useApi();
     const [movies, setMovies] = useState(null);
+    const [moviesUpcomming, setMoviesUpcomming] = useState(null);
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(0)
 
-    useEffect(() => {
-            api({ method: 'GET', url: '/movie?page=1&limit=4' })
+    const getMovies = () =>{
+        api({ method: 'GET', url: '/movie?page=1&limit=4' })
             .then(({ data }) => {
                 setMovies(data.data)
             })
             .catch((err) => {
                 console.log(err)
             })
+    }
+
+    const getMoviesUpcomming = () =>{
+        api({ method: 'GET', url: `movie/?page=${page}&limit=4`})
+            .then(({ data }) => {
+                setMoviesUpcomming(data.data)
+                setTotalPage(Math.ceil(data.meta.total/4))
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    const nextMoviesUpcomming = () =>{
+        if (page == totalPage) {
+            return
+        }
+        setPage(page + 1)
+        console.log(`next`)
+    }
+    
+    const prevMoviesUpcomming = () =>{
+        if (page == 1) {
+            return
+        }
+        setPage(page - 1)
+        console.log(`prev`)
+    }
+
+    useEffect(() => {
+        getMovies()
+        getMoviesUpcomming()
     }, [])
+
+    useEffect(() => {
+        getMoviesUpcomming()
+    }, [page])
 
     return (
         <>
@@ -79,22 +119,22 @@ function Home () {
                 <article className="con-movies">
                     <h2 className="title">MOVIES</h2>
                     <p className="sub-title sub-title-movie">Exciting Movies That Should Be Watched Today</p>
-                    <div className="con-card-movies">
+                    <div className="grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies">
                         {movies && movies.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} key={movie.movie_id}/>
                         })}
                     </div>
-                    <p className="link-view-all">View All <span>&#8594;</span></p>
+                    <a href='/movies' className="link-view-all">View All <span>&#8594;</span></a>
                 </article>
                 <article className="con-movies-upcoming">
                     <h2 className="title">UPCOMING MOVIES</h2>
                     <p className="sub-title sub-title-movie">Exciting Movie Coming Soon</p>
                     <div className="btn-movies-upcoming">
-                        <button className="btn-left"><span className='-mt-1'>&#8592;</span></button>
-                        <button className="btn-right"><span className='-mt-1'>&#8594;</span></button>
+                        <button className={`btn-left ${page == 1 ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600"} `} onClick={prevMoviesUpcomming}><span className='-mt-1' >&#8592;</span></button>
+                        <button className={`btn-right ${page == totalPage ? "bg-slate-500" : "bg-[#1D4ED8] hover:bg-blue-600 "}`} onClick={nextMoviesUpcomming}><span className='-mt-1' >&#8594;</span></button>
                     </div>
-                    <div className="con-card-movies">
-                    {movies && movies.map((movie) =>{
+                    <div className="grid grid-cols-4 md:gap-x-4 gap-56 mt-12 md:overflow-x-hidden overflow-x-scroll con-card-movies">
+                    {moviesUpcomming && moviesUpcomming.map((movie) =>{
                             return <Card id={movie.movie_id} title={movie.movie_name} genres={movie.genres} poster={movie.movie_poster} release={movie.release_date} isUpcoming={true} key={movie.movie_id}/>
                         })}
                     </div>

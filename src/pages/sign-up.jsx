@@ -8,13 +8,15 @@ import iconEyeHidden from '../assets/images/icons/eye-password-hide-svgrepo-com.
 import iconGoogle from '../assets/images/icons/google-icon.png'
 import iconFb from '../assets/images/icons/fb-icon.png'
 import '../custom-css/sign-up.css'
+import Alert from '../components/Alert'
+import Loading from '../components/Loading'
 
 export default function SignUp () {
     const api = useApi()
-    const alertElm = document.querySelector("#alert-error");
     
     const [form, setForm] = useState({role: 'user'})
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
     
     const {isAuth} = useSelector((state) => state.users)
     const navigate = useNavigate()
@@ -33,6 +35,7 @@ export default function SignUp () {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true)
 
         api({
             method: 'POST',
@@ -43,24 +46,18 @@ export default function SignUp () {
                 setTimeout(() => {
                     navigate('/sign-in')
                 }, 1500);
+                setLoading(false)
                 setMessage('Pendaftaran Berhasil')
-                alertElm.classList.add('opacity-100')
             })
             .catch((err) => {
+                setLoading(false)
+                if (err.message == 'Network Error') {
+                    setMessage('Maaf, sedang perbaikan server');
+                    return;
+                  }
                 setMessage(err.response.data.error)
-                alertElm.classList.add('opacity-100')
             })
     }
-
-    //Menghilangkan alert secara otomatis
-    useEffect(() => {
-        if (message) {
-            setTimeout(() => {
-                alertElm.classList.remove('opacity-100');
-            }, 7000)
-        }
-    },[message])
-
     const showPassword = () => {
 
         const elmInputPassword = document.querySelector("#input-password");
@@ -127,14 +124,14 @@ export default function SignUp () {
                         </button>
                     </div>
                     <label className="con-rules" htmlFor="term">I agree to terms & conditions
-                        <input type="checkbox" name="term" id="term" required/>
+                        <input type="checkbox" name="term" id="term"/>
                         <span className="checkmark"></span>
                     </label>
                     <input className="btn-submit" type="submit" value="Join For Free Now"/>
                 </form>
                 <div className="link-login">
                     <p>Already have an account?</p>
-                    <Link classNameName="a" to={"/sign-in"}>Log in</Link>
+                    <Link className="a" to={"/sign-in"}>Log in</Link>
                 </div>
                 <div className="con-line-or">
                     <hr/>
@@ -152,12 +149,9 @@ export default function SignUp () {
                     </a>
                 </div>
             </section>
-            <div id='alert-error' className='opacity-0  fixed top-0 left-0 w-screen h-screen flex flex-row justify-center items-center bg-[#000000CC] transition-all ease-in-out duration-1000 pointer-events-none'>
-                    <div className='bg-white h-fit flex flex-col items-center justify-center gap-y-7 rounded-[2px] px-12 py-5'>
-                        <p className='font-bold text-blue-700 text-xl'>{message && message ? message : "Maaf terjadi kesalahan"}</p>
-                        <button id='btn-allert' className='bg-blue-700 text-white rounded-[2px] px-7 py-2 hover:bg-blue-900 pointer-events-auto' type='button' onClick={() => {closeAllert()}}>OK</button>
-                    </div>
-                </div>
+            {/* alert notification */}
+            {loading ? <Loading /> : ''}
+            {message ? <Alert msg={message} setMsg={setMessage} /> : ''}
         </main>
     )
 }
