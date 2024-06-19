@@ -40,5 +40,19 @@
 // let b = a.split(', ')
 // console.log(b)
 
-const items = [...Array(33).keys()];
-console.log(items[2])
+// const items = [...Array(33).keys()];
+// console.log(items[2])
+
+// function fsTest( d = "") {
+//     const a = "yang a"
+//     const c = "yang b"
+    
+//     const b = a || d
+    
+//     console.log(b)
+//     return b
+// }
+
+// const test = fsTest()
+
+// console.log(test("yang d").toUpperCase())
