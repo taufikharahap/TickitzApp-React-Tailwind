@@ -207,7 +207,7 @@ function MovieList (){
 
                     {
                         totalData && totalButton.length != page ?
-                            <button type="button" className="flex flex-row justify-center items-center btn-next bg-blue-700 text-white w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-[50%]" onClick={handleNext}><span className='mb-1'>&#8594;</span></button>
+                            <button type="button" className="flex flex-row justify-center items-center btn-next bg-blue-700 text-white w-[30px] h-[30px] md:w-[40px] md:h-[40px] rounded-[50%]" onClick={handleNext}><span className='mb-0.5'>&#8594;</span></button>
                         : ''
                     }
                 </div>
